@@ -1,0 +1,10 @@
+<agm-map [latitude]="0" [longitude]="0" [mapTypeId]="mapType">
+    <agm-marker *ngFor ="let colegio of colegios "
+         [latitude]=this.colegio.payload.doc.data().Latitud
+         [longitude]=this.colegio.payload.doc.data().Longitud
+         [opacity]="1"
+         [markerDraggable]="false"
+         (markerClick)="selectMarker($event)"
+      >
+    </agm-marker>
+</agm-map>
