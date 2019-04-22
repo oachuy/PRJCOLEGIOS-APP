@@ -1,10 +1,41 @@
-<agm-map [latitude]="0" [longitude]="0" [mapTypeId]="mapType">
-    <agm-marker *ngFor ="let colegio of colegios "
-         [latitude]=this.colegio.payload.doc.data().Latitud
-         [longitude]=this.colegio.payload.doc.data().Longitud
-         [opacity]="1"
-         [markerDraggable]="false"
-         (markerClick)="selectMarker($event)"
-      >
-    </agm-marker>
-</agm-map>
+<div class="container">
+    <div class="row">
+        <div class="col-sm">
+            <agm-map [latitude]="latitud" [longitude]="longitud">
+                <agm-marker *ngFor="let marker of markers " [latitude]="marker.lat" [longitude]="marker.lng" [opacity]="1" [markerDraggable]="false" (markerClick)="selectMarker($event,marker.codlocal)">
+                </agm-marker>
+
+            </agm-map>
+        </div>
+        <div class="col-sm">
+
+            <div class="row">
+                <ngb-carousel *ngIf="images">
+                    <ng-template ngbSlide *ngFor="let image of images">
+                        <img [src]="image" width="500" height="300" alt="Imagen de Colegio">
+                    </ng-template>
+
+                </ngb-carousel>
+            </div>
+            <div>
+                <dl class="row" *ngIf='datos'>
+                    <dt class="col-sm-4">Región:</dt>
+                    <dd class="col-sm-8">{{datos.Region}}</dd>
+
+                    <dt class="col-sm-4">Código Local:</dt>
+                    <dd class="col-sm-8">{{datos.CodigoLocal}}</dd>
+
+                    <dt class="col-sm-4">Proyecto:</dt>
+                    <dd class="col-sm-8">{{datos.Proyecto}}</dd>
+
+                    <dt class="col-sm-4">Unidad Ejecutora:</dt>
+                    <dd class="col-sm-8">{{datos.UnidadEjecutora}}</dd>
+
+                    <dt class="col-sm-4 ">Modalidad de Intervención:</dt>
+                    <dd class="col-sm-8">{{datos.ModalidadIntervencion}}</dd>
+
+                </dl>
+            </div>
+        </div>
+    </div>
+</div>
